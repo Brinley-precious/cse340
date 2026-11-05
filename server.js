@@ -1,7 +1,9 @@
 import express from 'express';
 
-import { fileURLToPath} from 'url';
+import { fileURLToPath } from 'url';
 import path from 'path';
+import { testConnection } from './src/models/db.js';
+import { getAllOrganizations } from './src/models/organizations.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -21,15 +23,18 @@ app.set('views', path.join(__dirname, 'src/views'));
  */
 // Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, 'public')));
- 
+
 app.get('/', async (req, res) => {
-const title = 'Home';
-   res.render('home', { title });
+    const title = 'Home';
+    res.render('home', { title });
 });
 
 app.get('/organizations', async (req, res) => {
-    const title = 'Organizations';
-    res.render('organisations', { title });
+    const organizations = await getAllOrganizations();
+    console.log(organizations);
+
+    const title = 'Our Partner Organizations';
+    res.render('organizations', { title });
 });
 
 app.get('/projects', async (req, res) => {
@@ -42,7 +47,13 @@ app.get('/categories', async (req, res) => {
     res.render('categories', { title });
 });
 
-app.listen(PORT, () => {
-    console.log(`Server is running at http://127.0.0.1:${PORT}`);
-    console.log(`Environment: ${NODE_ENV}`);
+app.listen(PORT, async () => {
+    try {
+        await testConnection();
+        console.log(`Server is running at http://127.0.0.1:${PORT}`);
+        console.log(`Environment: ${NODE_ENV}`);
+    } catch (error) {
+        console.error('Failed to start server due to database connection error:', error.message);
+        process.exit(1); // Exit the process with a failure code
+    }
 });

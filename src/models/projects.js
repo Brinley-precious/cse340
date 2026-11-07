@@ -22,3 +22,4 @@ const getAllProjects = async () => {
 };
 
 export { getAllProjects };
+                 

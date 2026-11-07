@@ -1,4 +1,3 @@
-
 -- ========================================
 -- Organization Table
 -- ========================================
@@ -169,3 +168,108 @@ VALUES
     'Badagry, Lagos',
     '2026-12-14'
 );
+
+
+-- ========================================
+-- Category Table
+-- ========================================
+
+CREATE TABLE IF NOT EXISTS public.category (
+    category_id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL UNIQUE
+);
+
+-- ========================================
+-- Project Category Junction Table
+-- ========================================
+
+CREATE TABLE IF NOT EXISTS public.project_category (
+    project_id INTEGER NOT NULL,
+    category_id INTEGER NOT NULL,
+
+    CONSTRAINT pk_project_category
+        PRIMARY KEY (project_id, category_id),
+
+    CONSTRAINT fk_project_category_project
+        FOREIGN KEY (project_id)
+        REFERENCES public.project(project_id)
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_project_category_category
+        FOREIGN KEY (category_id)
+        REFERENCES public.category(category_id)
+        ON DELETE CASCADE
+);
+
+-- ========================================
+-- Insert Service Project Categories
+-- ========================================
+
+INSERT INTO public.category (name)
+VALUES
+    ('Environment'),
+    ('Education'),
+    ('Community Support'),
+    ('Health and Wellness')
+ON CONFLICT (name) DO NOTHING;
+
+-- ========================================
+-- Associate Projects with Categories
+-- ========================================
+
+INSERT INTO public.project_category (project_id, category_id)
+SELECT
+    p.project_id,
+    c.category_id
+FROM (
+    VALUES
+        ('Community Library Renovation', 'Education'),
+        ('Community Library Renovation', 'Community Support'),
+
+        ('Safe Playground Project', 'Community Support'),
+        ('Safe Playground Project', 'Environment'),
+
+        ('Community Road Improvement', 'Environment'),
+        ('Community Road Improvement', 'Community Support'),
+
+        ('School Classroom Repairs', 'Education'),
+        ('School Classroom Repairs', 'Community Support'),
+
+        ('Public Sanitation Facility', 'Environment'),
+        ('Public Sanitation Facility', 'Community Support'),
+
+        ('Community Vegetable Garden', 'Environment'),
+        ('Community Vegetable Garden', 'Community Support'),
+
+        ('Urban Farming Training', 'Education'),
+        ('Urban Farming Training', 'Environment'),
+
+        ('Tree Planting Initiative', 'Environment'),
+
+        ('School Gardening Programme', 'Education'),
+        ('School Gardening Programme', 'Environment'),
+
+        ('Food Sustainability Campaign', 'Environment'),
+        ('Food Sustainability Campaign', 'Education'),
+
+        ('Community Clean-Up Day', 'Environment'),
+        ('Community Clean-Up Day', 'Community Support'),
+
+        ('Food Donation Drive', 'Community Support'),
+
+        ('Children Reading Programme', 'Education'),
+        ('Children Reading Programme', 'Community Support'),
+
+        ('Elderly Care Outreach', 'Community Support'),
+
+        ('Community Health Awareness', 'Community Support'),
+        ('Community Health Awareness', 'Health and Wellness')
+) AS project_category_data(project_title, category_name)
+
+INNER JOIN public.project AS p
+    ON p.title = project_category_data.project_title
+
+INNER JOIN public.category AS c
+    ON c.name = project_category_data.category_name
+
+ON CONFLICT (project_id, category_id) DO NOTHING;

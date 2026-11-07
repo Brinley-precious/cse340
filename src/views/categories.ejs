@@ -10,30 +10,44 @@
         </section>
 
         <section class="category-grid" aria-label="Service categories">
-            <article class="category-card">
-                <span class="category-icon" aria-hidden="true">🌱</span>
-                <h2>Environmental</h2>
-                <p>Protecting the environment, improving shared spaces, and promoting sustainability.</p>
-            </article>
 
-            <article class="category-card">
-                <span class="category-icon" aria-hidden="true">📚</span>
-                <h2>Educational</h2>
-                <p>Supporting learning, literacy, education, and the development of new skills.</p>
-            </article>
+            <% categories.forEach(category=> { %>
+                <article class="category-card">
 
-            <article class="category-card">
-                <span class="category-icon" aria-hidden="true">🤝</span>
-                <h2>Community Service</h2>
-                <p>Bringing people together to respond to local needs and strengthen communities.</p>
-            </article>
+                    <% if (category.name==='Environment' ) { %>
+                        <span class="category-icon" aria-hidden="true">🌱</span>
+                        <h2>
+                            <%= category.name %>
+                        </h2>
+                        <p>Protecting the environment, improving shared spaces, and promoting sustainability.</p>
 
-            <article class="category-card">
-                <span class="category-icon" aria-hidden="true">💚</span>
-                <h2>Health and Wellness</h2>
-                <p>Promoting healthy living, personal well-being, and access to health-related support.</p>
-            </article>
+                        <% } else if (category.name==='Education' ) { %>
+                            <span class="category-icon" aria-hidden="true">📚</span>
+                            <h2>
+                                <%= category.name %>
+                            </h2>
+                            <p>Supporting learning, literacy, education, and the development of new skills.</p>
+
+                            <% } else if (category.name==='Community Support' ) { %>
+                                <span class="category-icon" aria-hidden="true">🤝</span>
+                                <h2>
+                                    <%= category.name %>
+                                </h2>
+                                <p>Bringing people together to respond to local needs and strengthen communities.</p>
+
+                                <% } else if (category.name==='Health and Wellness' ) { %>
+                                    <span class="category-icon" aria-hidden="true">💚</span>
+                                    <h2>
+                                        <%= category.name %>
+                                    </h2>
+                                    <p>Promoting healthy living, personal well-being, and access to health-related
+                                        support.</p>
+                                    <% } %>
+
+                </article>
+                <% }); %>
+
         </section>
     </main>
 
-    <%- include('partials/footer') %>
+<%- include('partials/footer') %>

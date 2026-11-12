@@ -4,8 +4,12 @@
             <a class="footer-brand" href="/">GoodTogether</a>
             <p>Small actions. Stronger communities. Better together.</p>
         </div>
+
         <p class="copyright">
             &copy; <%= new Date().getFullYear() %> GoodTogether. All rights reserved.
+                <% if (NODE_ENV==='development' ) { %>
+                    (Development mode)
+                    <% } %>
         </p>
     </div>
 </footer>

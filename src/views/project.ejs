@@ -30,6 +30,18 @@
                     <%= project.organization_name %>
                 </a>
             </p>
+
+            <div>
+                <strong>Categories:</strong>
+
+                <div class="category-tags">
+                    <% categories.forEach(category=> { %>
+                        <a class="project-tag" href="/category/<%= category.category_id %>">
+                            <%= category.name %>
+                        </a>
+                        <% }); %>
+                </div>
+            </div>
         </section>
     </main>
 

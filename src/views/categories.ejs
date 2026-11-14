@@ -17,28 +17,36 @@
                     <% if (category.name==='Environment' ) { %>
                         <span class="category-icon" aria-hidden="true">🌱</span>
                         <h2>
-                            <%= category.name %>
+                            <a href="/category/<%= category.category_id %>">
+                                <%= category.name %>
+                            </a>
                         </h2>
                         <p>Protecting the environment, improving shared spaces, and promoting sustainability.</p>
 
                         <% } else if (category.name==='Education' ) { %>
                             <span class="category-icon" aria-hidden="true">📚</span>
                             <h2>
-                                <%= category.name %>
+                                <a href="/category/<%= category.category_id %>">
+                                    <%= category.name %>
+                                </a>
                             </h2>
                             <p>Supporting learning, literacy, education, and the development of new skills.</p>
 
                             <% } else if (category.name==='Community Support' ) { %>
                                 <span class="category-icon" aria-hidden="true">🤝</span>
                                 <h2>
-                                    <%= category.name %>
+                                    <a href="/category/<%= category.category_id %>">
+                                        <%= category.name %>
+                                    </a>
                                 </h2>
                                 <p>Bringing people together to respond to local needs and strengthen communities.</p>
 
                                 <% } else if (category.name==='Health and Wellness' ) { %>
                                     <span class="category-icon" aria-hidden="true">💚</span>
                                     <h2>
-                                        <%= category.name %>
+                                        <a href="/category/<%= category.category_id %>">
+                                            <%= category.name %>
+                                        </a>
                                     </h2>
                                     <p>Promoting healthy living, personal well-being, and access to health-related
                                         support.</p>

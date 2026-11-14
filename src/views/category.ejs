@@ -1,0 +1,44 @@
+<%- include('partials/header') %>
+
+    <main class="page-container">
+        <section class="page-heading">
+            <p class="eyebrow">EXPLORE A CAUSE</p>
+            <h1>
+                <%= category.name %>
+            </h1>
+            <p>Explore service projects connected to this category and find an opportunity to make a difference.</p>
+        </section>
+
+        <section class="project-grid" aria-label="Projects in this category">
+            <% if (projects.length> 0) { %>
+                <% projects.forEach(project=> { %>
+                    <article class="project-card">
+                        <h2>
+                            <a href="/project/<%= project.project_id %>">
+                                <%= project.title %>
+                            </a>
+                        </h2>
+
+                        <p>
+                            <%= project.description %>
+                        </p>
+
+                        <p>
+                            <strong>Location:</strong>
+                            <%= project.location %>
+                        </p>
+
+                        <p>
+                            <strong>Date:</strong>
+                            <%= new Date(project.date + 'T00:00:00' ).toLocaleDateString('en-GB', { day: 'numeric' ,
+                                month: 'long' , year: 'numeric' }) %>
+                        </p>
+                    </article>
+                    <% }); %>
+                        <% } else { %>
+                            <p>There are currently no service projects in this category.</p>
+                            <% } %>
+        </section>
+    </main>
+
+<%- include('partials/footer') %>

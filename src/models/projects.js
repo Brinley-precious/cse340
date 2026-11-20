@@ -88,5 +88,50 @@ const getProjectDetails = async (id) => {
     return result.rows[0];
 };
 
-export { getAllProjects, getProjectsByOrganizationId, getUpcomingProjects, getProjectDetails };
+/**
+ * Creates a new service project in the database.
+ * @param {string} title - The title of the service project.
+ * @param {string} description - The project description.
+ * @param {string} location - The project location.
+ * @param {string} date - The project date.
+ * @param {number} organizationId - The ID of the associated organization.
+ * @returns {number} The ID of the newly created project.
+ */
+const createProject = async (title, description, location, date, organizationId) => {
+    const query = `
+        INSERT INTO public.project (
+            organization_id,
+            title,
+            description,
+            location,
+            date
+        )
+        VALUES ($1, $2, $3, $4, $5)
+        RETURNING project_id;
+    `;
+
+    const queryParams = [
+        organizationId,
+        title,
+        description,
+        location,
+        date
+    ];
+
+    const result = await db.query(query, queryParams);
+
+    if (result.rows.length === 0) {
+        throw new Error('Failed to create project');
+    }
+
+    return result.rows[0].project_id;
+};
+
+export {
+    getAllProjects,
+    getProjectsByOrganizationId,
+    getUpcomingProjects,
+    getProjectDetails,
+    createProject
+};
                  

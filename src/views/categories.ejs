@@ -7,53 +7,53 @@
                 <%= title %>
             </h1>
             <p>Explore different areas of service and discover causes you can support.</p>
+
+            <a href="/new-category" class="button button-primary">
+                Create New Category
+            </a>
         </section>
 
         <section class="category-grid" aria-label="Service categories">
 
-            <% categories.forEach(category=> { %>
-                <article class="category-card">
+            <% const categoryPresentation={ 'Environment' : { icon: '🌱' ,
+                description: 'Protecting the environment, improving shared spaces, and promoting sustainability.'
+                }, 'Education' : { icon: '📚' ,
+                description: 'Supporting learning, literacy, education, and the development of new skills.'
+                }, 'Community Support' : { icon: '🤝' ,
+                description: 'Bringing people together to respond to local needs and strengthen communities.'
+                }, 'Health and Wellness' : { icon: '💚' ,
+                description: 'Promoting healthy living, personal well-being, and access to health-related support.' } };
+                %>
 
-                    <% if (category.name==='Environment' ) { %>
-                        <span class="category-icon" aria-hidden="true">🌱</span>
-                        <h2>
-                            <a href="/category/<%= category.category_id %>">
-                                <%= category.name %>
-                            </a>
-                        </h2>
-                        <p>Protecting the environment, improving shared spaces, and promoting sustainability.</p>
+                <% categories.forEach(category=> { %>
 
-                        <% } else if (category.name==='Education' ) { %>
-                            <span class="category-icon" aria-hidden="true">📚</span>
+                    <% const presentation=categoryPresentation[category.name] || { icon: '✨' ,
+                        description: 'Explore service opportunities and discover ways to make a positive difference in this area.'
+                        }; %>
+
+                        <article class="category-card">
+
+                            <span class="category-icon" aria-hidden="true">
+                                <%= presentation.icon %>
+                            </span>
+
                             <h2>
                                 <a href="/category/<%= category.category_id %>">
                                     <%= category.name %>
                                 </a>
                             </h2>
-                            <p>Supporting learning, literacy, education, and the development of new skills.</p>
 
-                            <% } else if (category.name==='Community Support' ) { %>
-                                <span class="category-icon" aria-hidden="true">🤝</span>
-                                <h2>
-                                    <a href="/category/<%= category.category_id %>">
-                                        <%= category.name %>
-                                    </a>
-                                </h2>
-                                <p>Bringing people together to respond to local needs and strengthen communities.</p>
+                            <p>
+                                <%= presentation.description %>
+                            </p>
 
-                                <% } else if (category.name==='Health and Wellness' ) { %>
-                                    <span class="category-icon" aria-hidden="true">💚</span>
-                                    <h2>
-                                        <a href="/category/<%= category.category_id %>">
-                                            <%= category.name %>
-                                        </a>
-                                    </h2>
-                                    <p>Promoting healthy living, personal well-being, and access to health-related
-                                        support.</p>
-                                    <% } %>
+                            <a href="/edit-category/<%= category.category_id %>">
+                                Edit Category
+                            </a>
 
-                </article>
-                <% }); %>
+                        </article>
+
+                        <% }); %>
 
         </section>
     </main>

@@ -535,3 +535,82 @@ main {
     background-color: #d1ecf1;
     border-color: #bee5eb;
 }
+
+/* Category form styles */
+.form-card {
+    width: 100%;
+    max-width: 650px;
+    padding: 32px;
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    background: var(--white);
+    box-shadow: var(--shadow);
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--navy);
+    font-weight: 700;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #b8c7bd;
+    border-radius: 7px;
+    background: var(--white);
+    color: var(--text);
+    font: inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: 3px solid rgba(91, 149, 109, 0.25);
+    border-color: var(--green-dark);
+}
+
+.form-card button {
+    display: inline-block;
+    padding: 12px 22px;
+    border: 2px solid var(--green);
+    border-radius: 7px;
+    background: var(--green);
+    color: var(--white);
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.form-card button:hover {
+    border-color: var(--green-dark);
+    background: var(--green-dark);
+}
+
+.form-card button:focus-visible {
+    outline: 3px solid var(--green);
+    outline-offset: 4px;
+}
+
+.category-card>a:last-child {
+    display: inline-block;
+    margin-top: 10px;
+    font-weight: 700;
+}
+
+@media (max-width: 560px) {
+    .form-card {
+        padding: 22px;
+    }
+
+    .form-card button {
+        width: 100%;
+    }
+}

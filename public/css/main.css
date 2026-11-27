@@ -558,7 +558,14 @@ main {
     font-weight: 700;
 }
 
-.form-group input,
+.category-option label {
+    display: inline;
+    margin-bottom: 0;
+    color: var(--text);
+    cursor: pointer;
+}
+
+.form-group input:not([type="checkbox"]),
 .form-group textarea,
 .form-group select {
     width: 100%;
@@ -612,5 +619,118 @@ main {
 
     .form-card button {
         width: 100%;
+    }
+}
+
+/* Category assignment checkbox styling */
+.category-assignment-form .form-group {
+    display: grid;
+    gap: 12px;
+}
+
+.category-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: #fbfcf9;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.category-option:hover {
+    border-color: var(--green);
+    background: #f0f5ef;
+}
+
+.category-option input[type="checkbox"] {
+    flex: 0 0 auto;
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    padding: 0;
+    accent-color: var(--green-dark);
+    cursor: pointer;
+}
+
+.category-option label {
+    font-weight: 600;
+}
+
+.category-submit {
+    width: 100%;
+    margin-top: 28px;
+}
+
+.category-assignment-form button {
+    display: block;
+    width: 100%;
+    padding: 14px 28px;
+    border: 2px solid var(--green);
+    border-radius: 7px;
+    background: var(--green);
+    color: var(--white);
+    font: inherit;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.category-assignment-form button:hover {
+    border-color: var(--green-dark);
+    background: var(--green-dark);
+}
+
+.category-assignment-form button:focus-visible {
+    outline: 3px solid var(--green);
+    outline-offset: 4px;
+}
+
+@media (max-width: 560px) {
+    .category-submit {
+        width: 100%;
+    }
+
+    .category-assignment-form button {
+        width: 100%;
+    }
+}
+
+/* Dashboard styling */
+.dashboard-card {
+    width: 100%;
+    max-width: 650px;
+    padding: 32px;
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    background: var(--white);
+    box-shadow: var(--shadow);
+}
+
+.dashboard-card h2 {
+    margin: 0 0 20px;
+    color: var(--navy);
+}
+
+.dashboard-card p {
+    padding: 12px 0;
+    margin: 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--muted);
+}
+
+.dashboard-card p:last-child {
+    border-bottom: none;
+}
+
+.dashboard-card strong {
+    color: var(--navy);
+}
+
+@media (max-width: 560px) {
+    .dashboard-card {
+        padding: 22px;
     }
 }

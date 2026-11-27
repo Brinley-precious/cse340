@@ -45,9 +45,13 @@ app.use(session({
 
 // Middleware to log all incoming requests
 app.use((req, res, next) => {
-    if (NODE_ENV === 'development') {
-        console.log(`${req.method} ${req.url}`);
+    res.locals.isLoggedIn = false;
+
+    if (req.session && req.session.user) {
+        res.locals.isLoggedIn = true;
     }
+
+    res.locals.NODE_ENV = NODE_ENV;
     next();
 });
 

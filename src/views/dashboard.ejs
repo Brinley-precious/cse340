@@ -1,0 +1,24 @@
+<%- include('partials/header') %>
+
+    <main class="page-container">
+        <section class="page-heading">
+            <p class="eyebrow">YOUR ACCOUNT</p>
+            <h1>
+                <%= title %>
+            </h1>
+            <p>Welcome to your GoodTogether dashboard.</p>
+        </section>
+
+        <section class="dashboard-card">
+            <h2>Account Information</h2>
+
+            <p><strong>Name:</strong>
+                <%= name %>
+            </p>
+            <p><strong>Username:</strong>
+                <%= email %>
+            </p>
+        </section>
+    </main>
+
+<%- include('partials/footer') %>

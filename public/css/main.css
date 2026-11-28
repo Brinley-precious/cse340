@@ -734,3 +734,92 @@ main {
         padding: 22px;
     }
 }
+
+/* Registered Users Page */
+.users-card {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+.users-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.users-table th {
+    padding: 16px;
+    background: var(--cream);
+    color: var(--navy);
+    font-weight: 700;
+    border-bottom: 2px solid var(--border);
+}
+
+.users-table td {
+    padding: 16px;
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+}
+
+.users-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.users-table tbody tr:hover {
+    background: #fbfcf9;
+}
+
+.user-role {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    background: #edf4ed;
+    color: var(--green-dark);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+.empty-users {
+    margin: 0;
+    color: var(--muted);
+    text-align: center;
+}
+
+.users-back-link {
+    max-width: 900px;
+    margin: 24px auto 0;
+}
+
+.users-back-link a {
+    color: var(--green-dark);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.users-back-link a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+    .users-card {
+        padding: 16px;
+    }
+
+    .users-table th,
+    .users-table td {
+        padding: 12px 10px;
+        font-size: 0.9rem;
+    }
+}

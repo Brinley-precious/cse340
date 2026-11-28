@@ -1,0 +1,52 @@
+<%- include('partials/header') %>
+
+    <main class="page-container">
+        <section class="page-heading">
+            <p class="eyebrow">ADMINISTRATION</p>
+            <h1>
+                <%= title %>
+            </h1>
+            <p>View registered members and their account roles.</p>
+        </section>
+
+        <section class="users-card" aria-label="Registered users">
+            <% if (users.length> 0) { %>
+                <div class="users-table-wrapper">
+                    <table class="users-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Role</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% users.forEach(user=> { %>
+                                <tr>
+                                    <td>
+                                        <%= user.name %>
+                                    </td>
+                                    <td>
+                                        <%= user.email %>
+                                    </td>
+                                    <td>
+                                        <span class="user-role">
+                                            <%= user.role_name %>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+                <% } else { %>
+                    <p class="empty-users">No registered users found.</p>
+                    <% } %>
+        </section>
+
+        <p class="users-back-link">
+            <a href="/dashboard">Back to Dashboard</a>
+        </p>
+    </main>
+
+<%- include('partials/footer') %>

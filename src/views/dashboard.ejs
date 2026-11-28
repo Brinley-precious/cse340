@@ -19,6 +19,15 @@
                 <%= email %>
             </p>
         </section>
+        <% if (user && user.role_name==='admin' ) { %>
+            <section class="dashboard-card">
+                <h2>Administration</h2>
+                <p>Manage registered accounts and review their assigned roles.</p>
+                <a href="/users" class="button button-primary">
+                    View Registered Users
+                </a>
+            </section>
+        <% } %>
     </main>
 
 <%- include('partials/footer') %>

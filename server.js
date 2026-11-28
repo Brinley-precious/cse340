@@ -1,4 +1,3 @@
-
 import express from 'express';
 import session from 'express-session';
 
@@ -46,6 +45,7 @@ app.use(session({
 // Middleware to log all incoming requests
 app.use((req, res, next) => {
     res.locals.isLoggedIn = false;
+    res.locals.user = req.session.user || null;
 
     if (req.session && req.session.user) {
         res.locals.isLoggedIn = true;
